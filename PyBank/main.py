@@ -1,15 +1,10 @@
 import os
 import csv
-import numpy as np
 csvpath = os.path.join("budget_data.csv")
-
-amounts = []
-
 
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     print(csvreader)
-
     csv_header = next(csvreader)
 
     months = 0
@@ -49,3 +44,13 @@ print(f'Total: ${total}')
 print(f'Average Change: ${avg_change}')
 print(f'Greatest Increase in Profits: ${max_profit} during {max_profit_date}')
 print(f'Greatest Decrease in Losses: ${max_loss} during {max_loss_date}')
+
+out_path = os.path.join("resultsbank.txt")
+with open(out_path, 'w') as txtfile:
+    print(f'Financial Analysis', file=txtfile)
+    print(f'----------------------------', file=txtfile)
+    print(f'Total Months: {months}', file=txtfile)
+    print(f'Total: ${total}', file=txtfile)
+    print(f'Average Change: ${avg_change}', file=txtfile)
+    print(f'Greatest Increase in Profits: ${max_profit} during {max_profit_date}', file=txtfile)
+    print(f'Greatest Decrease in Losses: ${max_loss} during {max_loss_date}', file=txtfile)
