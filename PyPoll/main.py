@@ -41,6 +41,14 @@ with open(csvpath, newline='') as csvfile:
     Correy_vote = round(Correy_vote, 2)
     Li_vote = round(Li_vote, 2)
     Tooley_vote = round(Tooley_vote, 2)
+    if Khan_count > Correy_count and Khan_count > Li_count and Khan_count > Tooley_count:
+        winner = "Khan"
+    if Correy_count > Khan_count and Correy_count > Li_count and Correy_count > Tooley_count:
+        winner = "Correy"
+    if Li_count > Khan_count and Li_count > Correy_count and Li_count > Tooley_count:
+        winner = "Li"
+    if Tooley_count > Khan_count and Tooley_count > Correy_count and Tooley_count > Li_count:
+            winner = "O'Tooley"
 print(f'Election Results')
 print(f'-------------------------')
 print(f'Total Votes: {vote_count}')
@@ -50,5 +58,19 @@ print(f'Correy: {Correy_vote}% ({Correy_count})')
 print(f'Li: {Li_vote}% ({Li_count})')
 print(f"O'Tooley: {Tooley_vote}% ({Tooley_count})")
 print(f'-------------------------')
-print(f'Winner: Khan')
+print(f'Winner: {winner}')
 print(f'-------------------------')
+
+out_path = os.path.join("results.txt")
+with open(out_path, 'w') as txtfile:
+    print(f'Election Results', file=txtfile)
+    print(f'-------------------------', file=txtfile)
+    print(f'Total Votes: {vote_count}', file=txtfile)
+    print(f'-------------------------', file=txtfile)
+    print(f'Khan: {Khan_vote}% ({Khan_count})', file=txtfile)
+    print(f'Correy: {Correy_vote}% ({Correy_count})', file=txtfile)
+    print(f'Li: {Li_vote}% ({Li_count})', file=txtfile)
+    print(f"O'Tooley: {Tooley_vote}% ({Tooley_count})", file=txtfile)
+    print(f'-------------------------', file=txtfile)
+    print(f'Winner: {winner}', file=txtfile)
+    print(f'-------------------------', file=txtfile)
