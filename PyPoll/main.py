@@ -13,8 +13,12 @@ with open(csvpath, newline='') as csvfile:
     Li_count = 0
     Tooley_count = 0
 
-
+    candidate_list= []
     for row in csvreader:
+        candidate = row[2]
+        if candidate not in candidate_list:
+            candidate_list.append(candidate)
+            print(candidate_list)
         # total vote counter
         vote_count = vote_count + 1  
         # candidate counter
